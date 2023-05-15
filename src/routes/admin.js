@@ -3,7 +3,7 @@ const router = express.Router()
 const controller = require("../controllers/adminController")
 
 
-
+router.post('/login', controller.postLogin)
 router.post('/register',controller.register)
 
 
