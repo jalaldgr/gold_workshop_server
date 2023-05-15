@@ -5,11 +5,10 @@ const connectionOptions = {
     useUnifiedTopology: true,
     useFindAndModify: false
 };
-mongoose.connect(process.env.MONGODB_URI, connectionOptions);
+mongoose.connect(process.env.MONGODB_URI, {});
 mongoose.Promise = global.Promise;
-initial_base_prices().then(r => {})
 module.exports = {
-    Admin: require('models/admin'),
+    Admin: require('../models/admin'),
 
 
 
