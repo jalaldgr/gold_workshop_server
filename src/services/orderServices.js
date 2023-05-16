@@ -5,23 +5,59 @@ const Order = db.Order
 const secretKey = process.env.JSON_WEBTOKEN_SECRET
 
 module.exports={
-    create
+    create,
+    getAllOrders,
+    getOrderById,
+    deleteOrderById,
+    updateOrderById
 }
 
 
 async function create(userParam) {
-    if(userParam) {
-        if (await Order.findOne({username: userParam.username})) {
-            throw 'Username "' + userParam.username + '" is already taken';
+    try{
+        if(userParam) {
+            const order = new Order(userParam);
+            return await order.save();
         }
-
-        const user = new Order(userParam);
-
-        // hash password
-        if (userParam.password) {
-            user.hash = bcrypt.hashSync(userParam.password, 10);
-        }
-        // save user
-        await user.save();
+    }catch (e) {
+        return e
     }
+
+}
+
+
+async function getAllOrders() {
+    try{
+        return await Order.find()
+    }catch (e) {
+        return e
+    }
+
+}
+async function getOrderById(id) {
+    try{
+        return await Order.findOne({_id:id})
+    }catch (e) {
+        return e
+    }
+}
+async function deleteOrderById(id) {
+    try{
+        return await Order.findByIdAndRemove(id)
+    }catch (e){
+        return e
+    }
+}
+async function updateOrderById(id,params) {
+    try{
+        const order = await Order.findById(id)
+        if(order){
+            Object.assign(order, params)
+            await order.save()
+            return await order
+        }
+    }catch (e) {
+        return e
+    }
+
 }

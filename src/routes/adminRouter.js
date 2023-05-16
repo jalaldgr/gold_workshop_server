@@ -29,6 +29,11 @@ router.get("/get-designer/:id",designerController.getDesignerById)
 router.post("/update-designer/:id",designerController.updateDesignerById)
 router.delete("/delete-designer/:id",designerController.deleteDesignerById)
 
+router.post('/create-order',orderController.create)
+router.get("/get-all-order",orderController.getAllOrders)
+router.get("/get-order/:id",orderController.getOrderById)
+router.post("/update-order/:id",orderController.updateOrderById)
+router.delete("/delete-order/:id",orderController.deleteOrderById)
 
 router.get('/', (req, res) => {
     res.send('admin works functionally')
