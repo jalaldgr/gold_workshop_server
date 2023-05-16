@@ -9,7 +9,6 @@ const orderController = require("../controllers/orderController")
 
 router.post('/login', controller.postLogin)
 router.post('/register',controller.register)
-router.post('/register-designer',designerController.register)
 router.post('/create-order',orderController.create)
 
 router.post('/register-workshop1',workshop1Controller.register)
@@ -24,6 +23,11 @@ router.get("/get-workshop2/:id",workshop2Controller.getWorkshop2ById)
 router.post("/update-workshop2/:id",workshop2Controller.updateWorkshop2ById)
 router.delete("/delete-workshop2/:id",workshop2Controller.deleteWorkshop2ById)
 
+router.post('/register-designer',designerController.register)
+router.get("/get-all-designer",designerController.getAllDesigner)
+router.get("/get-designer/:id",designerController.getDesignerById)
+router.post("/update-designer/:id",designerController.updateDesignerById)
+router.delete("/delete-designer/:id",designerController.deleteDesignerById)
 
 
 router.get('/', (req, res) => {

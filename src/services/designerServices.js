@@ -5,7 +5,11 @@ const Designer = db.Designer
 const secretKey = process.env.JSON_WEBTOKEN_SECRET
 
 module.exports={authenticate,
-    create
+    create,
+    getAllDesigner,
+    getDesignerById,
+    deleteDesignerById,
+    updateDesignerById
 }
 async function authenticate({ username, password }) {
     const designer = await Designer.findOne({ username });
@@ -31,6 +35,43 @@ async function create(userParam) {
             user.hash = bcrypt.hashSync(userParam.password, 10);
         }
         // save user
-        await user.save();
+        return await user.save();
     }
+}
+
+
+async function getAllDesigner() {
+    try{
+        return await Designer.find()
+    }catch (e) {
+        return e
+    }
+
+}
+async function getDesignerById(id) {
+    try{
+        return await Designer.findOne({_id:id})
+    }catch (e) {
+        return e
+    }
+}
+async function deleteDesignerById(id) {
+    try{
+        return await Designer.findByIdAndRemove(id)
+    }catch (e){
+        return e
+    }
+}
+async function updateDesignerById(id,params) {
+    try{
+        const user = await Designer.findById(id)
+        if(user){
+            Object.assign(user, params)
+            await user.save()
+            return await user
+        }
+    }catch (e) {
+        return e
+    }
+
 }
