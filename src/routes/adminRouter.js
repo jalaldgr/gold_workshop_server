@@ -10,10 +10,14 @@ const orderController = require("../controllers/orderController")
 router.post('/login', controller.postLogin)
 router.post('/register',controller.register)
 router.post('/register-designer',designerController.register)
-router.post('/register-workshop1',workshop1Controller.register)
 router.post('/register-workshop2',workshop2Controller.register)
 router.post('/create-order',orderController.create)
 
+router.post('/register-workshop1',workshop1Controller.register)
+router.get("/get-all-workshop1",workshop1Controller.getAllWorkshop1)
+router.get("/get-workshop1/:id",workshop1Controller.getWorkshop1ById)
+router.post("/update-workshop1/:id",workshop1Controller.updateWorkshop1ById)
+router.delete("/delete-workshop1/:id",workshop1Controller.deleteWorkshop1ById)
 
 
 

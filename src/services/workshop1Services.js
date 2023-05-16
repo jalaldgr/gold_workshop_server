@@ -5,7 +5,11 @@ const Workshop1 = db.Workshop1
 const secretKey = process.env.JSON_WEBTOKEN_SECRET
 
 module.exports={authenticate,
-    create
+    create,
+    getAllWorkshop1,
+    getWorkshopById,
+    deleteWorkshop1ById,
+    updateWorkshop1ById
 }
 async function authenticate({ username, password }) {
     const workshop1 = await Workshop1.findOne({ username });
@@ -31,6 +35,41 @@ async function create(userParam) {
             user.hash = bcrypt.hashSync(userParam.password, 10);
         }
         // save user
-        await user.save();
+        return await user.save();
     }
+}
+async function getAllWorkshop1() {
+    try{
+        return await Workshop1.find()
+    }catch (e) {
+        return e
+    }
+
+}
+async function getWorkshopById(id) {
+    try{
+        return await Workshop1.findOne({_id:id})
+    }catch (e) {
+        return e
+    }
+}
+async function deleteWorkshop1ById(id) {
+    try{
+       return await Workshop1.findByIdAndRemove(id)
+    }catch (e){
+        return e
+    }
+}
+async function updateWorkshop1ById(id,params) {
+    try{
+        const user = await Workshop1.findById(id)
+        if(user){
+            Object.assign(user, params)
+            await user.save()
+            return await user
+        }
+    }catch (e) {
+        return e
+    }
+
 }
