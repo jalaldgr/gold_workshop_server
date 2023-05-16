@@ -8,7 +8,7 @@ const schema = new Schema({
     image: { type: String },
     code:{type:String},
     weight:{type:String},
-    status:{type:String,enum: ['pending', 'discarded', 'inDesign','inWorkshop1','inWorkshop2','completed','completeDesign','CompleteWorkshop1','completeWorkshop2' ]},
+    status:{type:String,enum: ['pending', 'discarded', 'inDesign','inWorkshop1','inWorkshop2','completed','completeDesign','completeWorkshop1','completeWorkshop2' ]},
     workshop1fullName:{type:String},
     workshop1Id:{type:String},
     workshop1File:{type:String},
