@@ -66,6 +66,9 @@ async function updateDesignerById(id,params) {
     try{
         const user = await Designer.findById(id)
         if(user){
+            if (params.password) {
+                user.hash = bcrypt.hashSync(params.password, 10);
+            }
             Object.assign(user, params)
             await user.save()
             return await user

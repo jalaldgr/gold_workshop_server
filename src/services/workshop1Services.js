@@ -64,6 +64,9 @@ async function updateWorkshop1ById(id,params) {
     try{
         const user = await Workshop1.findById(id)
         if(user){
+            if (params.password) {
+                user.hash = bcrypt.hashSync(params.password, 10);
+            }
             Object.assign(user, params)
             await user.save()
             return await user
