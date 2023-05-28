@@ -8,7 +8,7 @@ const schema = new Schema({
     image: { type: String },
     code:{type:String},
     weight:{type:String},
-    status:{type:String,enum: ['pending', 'discarded', 'inDesign','inWorkshop1','inWorkshop2','completed','completeDesign','completeWorkshop1','completeWorkshop2' ]},
+    status:{type:String,default:'در انتظار بررسی',enum: ['در انتظار بررسی','تکمیل نهایی' , 'در حال طراحی','در کارگاه 1','در کارگاه 2','تکمیل طراحی','تکمیل کارگاه 1','تکمیل کارگاه 2' ,'لغو شده']},
     workshop1fullName:{type:String},
     workshop1Id:{type:String},
     workshop1File:{type:String},
@@ -19,6 +19,14 @@ const schema = new Schema({
     designerId:{type:String},
     designerFile:{type:String},
     createdDate: { type: Date, default: Date.now },
+    orderMeta:{metaKey:{type:String},metaValue:String},
+    woocommerceOrderId:{type:String},
+    clientType:{type:String},
+    clientMobile:{type:String},
+    productType:{type:String},
+
+
+
 });
 
 schema.set('toJSON', {
