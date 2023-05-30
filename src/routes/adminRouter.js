@@ -5,11 +5,32 @@ const designerController = require("../controllers/designerController")
 const workshop1Controller = require("../controllers/workshop1Controller")
 const workshop2Controller = require("../controllers/workshop2Controller")
 const orderController = require("../controllers/orderController")
-
-
+const multer = require("multer");
+const path = require("path");
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'public/uploads/')
+    },
+    filename: function (req, file, cb) {
+        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
+        cb(null, file.fieldname + '-' + uniqueSuffix+"-"+file.originalname)
+    }
+})
+const upload = multer(
+    { storage: storage ,
+        fileFilter: function (req, file, callback) {
+            var ext = path.extname(file.originalname);
+            if(ext !== '.png' && ext !== '.jpg' && ext !== '.gif' && ext !== '.jpeg') {
+                return callback(new Error('Only images are allowed'))
+            }
+            callback(null, true)
+        },
+        limits:{
+            fileSize: 4096 * 1024
+        }
+    })
 router.post('/login', controller.postLogin)
 router.post('/register',controller.register)
-router.post('/create-order',orderController.create)
 
 router.post('/register-workshop1',workshop1Controller.register)
 router.get("/get-all-workshop1",workshop1Controller.getAllWorkshop1)
@@ -29,7 +50,7 @@ router.get("/get-designer/:id",designerController.getDesignerById)
 router.post("/update-designer/:id",designerController.updateDesignerById)
 router.delete("/delete-designer/:id",designerController.deleteDesignerById)
 
-router.post('/create-order',orderController.create)
+router.post('/create-order',upload.fields([{name:'file'},{name:'image'}]),orderController.create)
 router.get("/get-all-order",orderController.getAllOrders)
 router.get("/get-order/:id",orderController.getOrderById)
 router.post("/update-order/:id",orderController.updateOrderById)
