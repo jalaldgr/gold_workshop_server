@@ -13,10 +13,11 @@ module.exports={
 }
 
 
-async function create(userParam) {
+async function create(userParam,userFiles) {
     try{
         if(userParam) {
             const order = new Order(userParam);
+            if(userFiles['image'])order.image=userFiles['image'][0]['filename'];
             return await order.save();
         }
     }catch (e) {

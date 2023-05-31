@@ -10,7 +10,7 @@ module.exports = {
 }
 
 function create(req, res, next) {
-    orderService.create(req.body)
+    orderService.create(req.body,req.files)
         .then(order => res.json(order))
         .catch(err => next(err));
 
