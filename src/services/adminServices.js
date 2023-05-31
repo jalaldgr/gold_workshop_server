@@ -6,7 +6,8 @@ const secretKey = process.env.JSON_WEBTOKEN_SECRET
 
 module.exports={authenticate,
     create,
-    getAdminById
+    getAdminById,
+    updateAdminById
 }
 async function authenticate({ username, password }) {
     const admin = await Admin.findOne({ username });
@@ -42,4 +43,20 @@ async function getAdminById(id) {
     }catch (e) {
         return e
     }
+}
+async function updateAdminById(id,params) {
+    try{
+        const user = await Admin.findById(id)
+        if(user){
+            if (params.password) {
+                user.hash = bcrypt.hashSync(params.password, 10);
+            }
+            Object.assign(user, params)
+            await user.save()
+            return await user
+        }
+    }catch (e) {
+        return e
+    }
+
 }

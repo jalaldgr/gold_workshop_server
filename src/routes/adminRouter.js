@@ -32,6 +32,7 @@ const upload = multer(
 router.post('/login', controller.postLogin)
 router.post('/register',controller.register)
 router.get("/get/:id",controller.getAdminById)
+router.post("/update/:id",controller.updateAdminById)
 
 router.post('/register-workshop1',workshop1Controller.register)
 router.get("/get-all-workshop1",workshop1Controller.getAllWorkshop1)

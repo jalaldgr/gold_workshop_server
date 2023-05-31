@@ -3,6 +3,7 @@ const adminService = require('../services/adminServices');
 module.exports = {postLogin,
     getAdminById,
     register,
+    updateAdminById
 }
 
 function register(req, res, next) {
@@ -24,16 +25,33 @@ function postLogin(req, res, next) {
             res.json(admin)
         }).catch(err => next(err));
 }
-function getAdminById(req,res,next){
-    const  id = req.params.id
-    if(id){
-        try{
+function getAdminById(req,res,next) {
+    const id = req.params.id
+    if (id) {
+        try {
             adminService.getAdminById(id)
-                .then(Admin=>{
+                .then(Admin => {
                     res.send(Admin)
                 })
-        }catch (e) {
+        } catch (e) {
+            res.send(e)
+        }
+    }
+}
+
+function updateAdminById(req, res, next) {
+    console.log(req.body)
+    const id = req.params.id
+    const body = req.body
+    if (id && body) {
+        try {
+            adminService.updateAdminById(id, body)
+                .then(result => {
+                    res.send(result)
+                })
+        } catch (e) {
             res.send(e)
         }
     }
 
+}
