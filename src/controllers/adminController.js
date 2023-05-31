@@ -1,6 +1,7 @@
 const adminService = require('../services/adminServices');
 
 module.exports = {postLogin,
+    getAdminById,
     register,
 }
 
@@ -23,4 +24,16 @@ function postLogin(req, res, next) {
             res.json(admin)
         }).catch(err => next(err));
 }
+function getAdminById(req,res,next){
+    const  id = req.params.id
+    if(id){
+        try{
+            adminService.getAdminById(id)
+                .then(Admin=>{
+                    res.send(Admin)
+                })
+        }catch (e) {
+            res.send(e)
+        }
+    }
 

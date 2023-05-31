@@ -5,7 +5,8 @@ const Admin = db.Admin
 const secretKey = process.env.JSON_WEBTOKEN_SECRET
 
 module.exports={authenticate,
-    create
+    create,
+    getAdminById
 }
 async function authenticate({ username, password }) {
     const admin = await Admin.findOne({ username });
@@ -32,5 +33,13 @@ async function create(userParam) {
         }
         // save user
         await user.save();
+    }
+}
+
+async function getAdminById(id) {
+    try{
+        return await Admin.findOne({_id:id})
+    }catch (e) {
+        return e
     }
 }
