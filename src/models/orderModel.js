@@ -28,6 +28,8 @@ const schema = new Schema({
     clientType:{type:String},
     clientMobile:{type:String},
     productType:{type:String},
+    deliveryDate:{type:String},
+
 
 
 
