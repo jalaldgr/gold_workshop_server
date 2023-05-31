@@ -4,6 +4,8 @@ const designerController = require("../controllers/designerController")
 
 
 router.post('/login', designerController.postLogin)
+router.get("/get-designer/:id",designerController.getDesignerById)
+router.post("/update-designer/:id",designerController.updateDesignerById)
 
 
 router.get('/', (req, res) => {
