@@ -9,7 +9,8 @@ module.exports={
     getAllOrders,
     getOrderById,
     deleteOrderById,
-    updateOrderById
+    updateOrderById,
+    getAllPendingOrdersByUserId
 }
 
 
@@ -57,6 +58,17 @@ async function updateOrderById(id,params) {
             await order.save()
             return await order
         }
+    }catch (e) {
+        return e
+    }
+
+}
+
+
+async function getAllPendingOrdersByUserId(id) {
+    try{
+        return await Order.find({$or:[{workshop1Id: id},{workshop2Id:id},{designerId:id}]})
+
     }catch (e) {
         return e
     }

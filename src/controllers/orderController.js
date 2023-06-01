@@ -1,12 +1,12 @@
 const orderService = require('../services/orderServices');
-const designerService = require("../services/designerServices");
 
 module.exports = {
     create,
     getAllOrders,
     getOrderById,
     deleteOrderById,
-    updateOrderById
+    updateOrderById,
+    getAllPendingOrdersById
 }
 
 function create(req, res, next) {
@@ -64,6 +64,21 @@ function updateOrderById(req,res,next){
         }catch (e) {
             res.send(e)
         }
+    }
+
+}
+
+
+function getAllPendingOrdersById(req,res,next){
+    const id = req.params.id
+
+    try{
+        orderService.getAllPendingOrdersByUserId(id)
+            .then(orders=>{
+                res.send(orders)
+            })
+    }catch (e) {
+        res.send(e)
     }
 
 }
