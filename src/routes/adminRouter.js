@@ -55,7 +55,7 @@ router.delete("/delete-designer/:id",designerController.deleteDesignerById)
 router.post('/create-order',upload.fields([{name:'file'},{name:'image'}]),orderController.create)
 router.get("/get-all-order",orderController.getAllOrders)
 router.get("/get-order/:id",orderController.getOrderById)
-router.post("/update-order/:id",orderController.updateOrderById)
+router.post("/update-order/:id",upload.fields([{name:'file'},{name:'image'}]),orderController.updateOrderById)
 router.delete("/delete-order/:id",orderController.deleteOrderById)
 
 router.get('/', (req, res) => {

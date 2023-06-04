@@ -59,7 +59,7 @@ function updateOrderById(req,res,next){
     const body = req.body
     if(id && body){
         try{
-            orderService.updateOrderById(id,body)
+            orderService.updateOrderById(id,body,req.files)
                 .then(result=>{res.send(result)})
         }catch (e) {
             res.send(e)

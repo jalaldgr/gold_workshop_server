@@ -60,17 +60,31 @@ async function deleteOrderById(id) {
         return e
     }
 }
-async function updateOrderById(id,params) {
+async function updateOrderById(id,userParam,userFiles) {
+
     try{
-        const order = await Order.findById(id)
-        if(order){
-            Object.assign(order, params)
-            await order.save()
-            return await order
+        if(userParam) {
+            clean(userParam)
+            const order = await Order.findById(id)
+            Object.assign(order, userParam)
+
+            if(userFiles['image'])order.image=userFiles['image'][0]['filename'];
+            order.save();
         }
     }catch (e) {
         return e
     }
+
+
+    function clean(obj) {
+        for (var propName in obj) {
+            if (obj[propName] === null || obj[propName] === undefined ||obj[propName]==="") {
+                delete obj[propName];
+            }
+        }
+        return obj
+    }
+
 
 }
 
