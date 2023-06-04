@@ -17,6 +17,7 @@ module.exports={
 async function create(userParam,userFiles) {
     try{
         if(userParam) {
+            clean(userParam)
             const order = new Order(userParam);
             if(userFiles['image'])order.image=userFiles['image'][0]['filename'];
             return await order.save();
@@ -25,6 +26,15 @@ async function create(userParam,userFiles) {
         return e
     }
 
+
+    function clean(obj) {
+        for (var propName in obj) {
+            if (obj[propName] === null || obj[propName] === undefined ||obj[propName]==="") {
+                delete obj[propName];
+            }
+        }
+        return obj
+    }
 }
 
 
