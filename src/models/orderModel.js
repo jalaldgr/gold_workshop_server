@@ -5,7 +5,7 @@ const schema = new Schema({
     clientFullName: { type: String , required: true},
     plateName: { type: String },
     description: { type: String },
-    image: { type: String },
+    image: { type: String ,default:"placeholder.jpg"},
     code:{type:String},
     weight:{type:String},
     status:{type:String,default:'در انتظار بررسی',},
