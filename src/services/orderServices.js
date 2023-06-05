@@ -122,6 +122,9 @@ async function postSendFile(id,user,files) {
         if(id) {
             const order = await Order.findById(id)
             if(files['workshop1File'])order.workshop1File=files['workshop1File'][0]['filename'];
+            if(files['workshop2File'])order.workshop2File=files['workshop2File'][0]['filename'];
+            if(files['designerFile'])order.designerFile=files['designerFile'][0]['filename'];
+
             order.save();
         }
     }catch (e) {
