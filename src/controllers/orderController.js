@@ -71,9 +71,10 @@ function updateOrderById(req,res,next){
 
 function getAllPendingOrdersById(req,res,next){
     const id = req.params.id
+    const status  = req.params.status
 
     try{
-        orderService.getAllPendingOrdersByUserId(id)
+        orderService.getAllPendingOrdersByUserId(id,status)
             .then(orders=>{
                 res.send(orders)
             })

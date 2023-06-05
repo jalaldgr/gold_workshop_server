@@ -89,9 +89,9 @@ async function updateOrderById(id,userParam,userFiles) {
 }
 
 
-async function getAllPendingOrdersByUserId(id) {
+async function getAllPendingOrdersByUserId(id,status) {
     try{
-        return await Order.find({$or:[{workshop1Id: id},{workshop2Id:id},{designerId:id}]})
+        return await Order.find({$or:[{workshop1Id: id},{workshop2Id:id},{designerId:id}],$and:[{ status:status } ] })
 
     }catch (e) {
         return e

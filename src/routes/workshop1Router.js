@@ -7,7 +7,7 @@ const orderController = require("../controllers/orderController")
 router.post('/login', workshop1Controller.postLogin)
 router.get("/get-workshop1/:id",workshop1Controller.getWorkshop1ById)
 router.post("/update-workshop1/:id",workshop1Controller.updateWorkshop1ById)
-router.get("/get-all-pending-orders/:id/",orderController.getAllPendingOrdersById)
+router.get("/get-all-pending-orders/:id/:status/",orderController.getAllPendingOrdersById)
 
 
 router.get('/', (req, res) => {
