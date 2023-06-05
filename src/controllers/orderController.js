@@ -6,7 +6,8 @@ module.exports = {
     getOrderById,
     deleteOrderById,
     updateOrderById,
-    getAllPendingOrdersById
+    getAllPendingOrdersById,
+    postCompleteOrder
 }
 
 function create(req, res, next) {
@@ -77,6 +78,20 @@ function getAllPendingOrdersById(req,res,next){
         orderService.getAllPendingOrdersByUserId(id,status)
             .then(orders=>{
                 res.send(orders)
+            })
+    }catch (e) {
+        res.send(e)
+    }
+
+}
+
+function postCompleteOrder(req,res,next){
+    const id = req.params.id
+
+    try{
+        orderService.postCompleteOrder(id)
+            .then(orders=>{
+                res.send("سفارش با موفقیت تکمیل شد")
             })
     }catch (e) {
         res.send(e)

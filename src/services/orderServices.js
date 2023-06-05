@@ -10,7 +10,8 @@ module.exports={
     getOrderById,
     deleteOrderById,
     updateOrderById,
-    getAllPendingOrdersByUserId
+    getAllPendingOrdersByUserId,
+    postCompleteOrder
 }
 
 
@@ -93,6 +94,22 @@ async function getAllPendingOrdersByUserId(id,status) {
     try{
         return await Order.find({$or:[{workshop1Id: id},{workshop2Id:id},{designerId:id}],$and:[{ status:status } ] })
 
+    }catch (e) {
+        return e
+    }
+
+}
+
+async function postCompleteOrder(id) {
+    try{
+        const order = await Order.findById(id);
+        // validate
+        if (!order) throw 'Trip not found';
+
+        // copy userParam properties to user
+        Object.assign(order, {status:"تکمیل کارگاه 1"});
+
+        await order.save()
     }catch (e) {
         return e
     }
