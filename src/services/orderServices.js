@@ -11,7 +11,8 @@ module.exports={
     deleteOrderById,
     updateOrderById,
     getAllPendingOrdersByUserId,
-    postCompleteOrder
+    postCompleteOrder,
+    postSendFile
 }
 
 
@@ -115,3 +116,17 @@ async function postCompleteOrder(id) {
     }
 
 }
+
+async function postSendFile(id,user,files) {
+    try{
+        if(id) {
+            const order = await Order.findById(id)
+            if(files['workshop1File'])order.workshop1File=files['workshop1File'][0]['filename'];
+            order.save();
+        }
+    }catch (e) {
+        return e
+    }
+
+}
+

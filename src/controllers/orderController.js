@@ -7,7 +7,8 @@ module.exports = {
     deleteOrderById,
     updateOrderById,
     getAllPendingOrdersById,
-    postCompleteOrder
+    postCompleteOrder,
+    postSendFile
 }
 
 function create(req, res, next) {
@@ -98,3 +99,21 @@ function postCompleteOrder(req,res,next){
     }
 
 }
+
+function postSendFile(req,res,next){
+    const id = req.params.id
+    const user = req.params.user
+
+    const files = req.files
+
+    try{
+        orderService.postSendFile(id,user,files)
+            .then(orders=>{
+                res.send("فایل با موفقیت ارسال شد")
+            })
+    }catch (e) {
+        res.send(e)
+    }
+
+}
+
