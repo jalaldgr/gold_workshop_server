@@ -5,6 +5,7 @@ const designerController = require("../controllers/designerController")
 const workshop1Controller = require("../controllers/workshop1Controller")
 const workshop2Controller = require("../controllers/workshop2Controller")
 const orderController = require("../controllers/orderController")
+const tableController = require("../controllers/tableController")
 const multer = require("multer");
 const path = require("path");
 const storage = multer.diskStorage({
@@ -57,6 +58,7 @@ router.get("/get-all-order",orderController.getAllOrders)
 router.get("/get-order/:id",orderController.getOrderById)
 router.post("/update-order/:id",upload.fields([{name:'file'},{name:'image'}]),orderController.updateOrderById)
 router.delete("/delete-order/:id",orderController.deleteOrderById)
+router.get("/get-table/",tableController.getTable)
 
 router.get('/', (req, res) => {
     res.send('admin works functionally')
