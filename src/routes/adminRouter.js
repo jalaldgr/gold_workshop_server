@@ -59,6 +59,8 @@ router.get("/get-order/:id",orderController.getOrderById)
 router.post("/update-order/:id",upload.fields([{name:'file'},{name:'image'}]),orderController.updateOrderById)
 router.delete("/delete-order/:id",orderController.deleteOrderById)
 router.get("/get-table/",tableController.getTable)
+router.post("/post-table/",tableController.postTable)
+
 
 router.get('/', (req, res) => {
     res.send('admin works functionally')
