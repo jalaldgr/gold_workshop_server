@@ -34,7 +34,7 @@ async function getTable() {
 
 
 async function postTable(params) {
-
+    const cleanParams = clean(params)
     let table = await Table.findOne().sort({_id: -1})
     if (table) {
         const lastTableDate = table.createdAt
@@ -44,7 +44,7 @@ async function postTable(params) {
             table = new Table({status: "در حال انجام"})
             return table.save()
         } else {
-            Object.assign(table, params)
+            Object.assign(table, cleanParams)
             await table.save()
             return await table
         }
@@ -54,5 +54,14 @@ async function postTable(params) {
 
     }
 
+
+    function clean(obj) {
+        for (var propName in obj) {
+            if (obj[propName] === null || obj[propName] === undefined ||obj[propName]==="") {
+                delete obj[propName];
+            }
+        }
+        return obj
+    }
 
 }
