@@ -4,7 +4,8 @@ const moment = require('moment'); // require
 
 module.exports={
     getTable,
-    postTable
+    postTable,
+    getAllTables
 
 }
 
@@ -62,6 +63,15 @@ async function postTable(params) {
             }
         }
         return obj
+    }
+
+}
+
+async function getAllTables() {
+    try{
+        return await Table.find()
+    }catch (e) {
+        return e
     }
 
 }

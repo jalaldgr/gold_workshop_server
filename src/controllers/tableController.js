@@ -1,7 +1,9 @@
 const tableService = require('../services/tableServices');
+const designerService = require("../services/designerServices");
 
 module.exports = {getTable,
-postTable
+postTable,
+    getTables
 }
 
 function getTable(req, res, next) {
@@ -19,3 +21,14 @@ function postTable(req, res, next) {
 }
 
 
+function getTables(req,res,next){
+    try{
+        tableService.getAllTables()
+            .then(tables=>{
+                res.send(tables)
+            })
+    }catch (e) {
+        res.send(e)
+    }
+
+}
