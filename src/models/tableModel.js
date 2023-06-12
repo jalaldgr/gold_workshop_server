@@ -10,7 +10,7 @@ const schema = new Schema({
     table5:{type:String},
     table6:{type:String},
     status:{type:String},
-    createdDate:{type: Date ,default: Date.now()}
+    date:{type: String ,}
 },{ timestamps: true });
 
 schema.set('toJSON', {
