@@ -27,7 +27,6 @@ async function getTable() {
 
     } else {
         table = new Table({status: "در حال انجام",date:new Intl.DateTimeFormat('fa-IR-u-nu-latn', {dateStyle: 'full'}).format(d)})
-        console.log("tdrgerg")
         return table.save()
 
     }
