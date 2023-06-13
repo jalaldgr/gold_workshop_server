@@ -33,6 +33,7 @@ router.post("/update-designer/:id",designerController.updateDesignerById)
 router.get("/get-all-pending-orders/:id/:status/",orderController.getAllPendingOrdersById)
 router.post("/complete-order/:id/",orderController.postCompleteOrder)
 router.post("/send-file/:id/:user/",upload.fields([{name:'designerFile'}]),orderController.postSendFile)
+router.get("/get-all-order",orderController.getAllOrders)
 
 router.get('/', (req, res) => {
     res.send('designer works functionally')

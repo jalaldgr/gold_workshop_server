@@ -34,6 +34,8 @@ router.post("/update-workshop2/:id",workshop2Controller.updateWorkshop2ById)
 router.get("/get-all-pending-orders/:id/:status/",orderController.getAllPendingOrdersById)
 router.post("/complete-order/:id/",orderController.postCompleteOrder)
 router.post("/send-file/:id/:user/",upload.fields([{name:'workshop2File'}]),orderController.postSendFile)
+router.get("/get-all-order",orderController.getAllOrders)
+
 router.get('/', (req, res) => {
     res.send('workshop2 works functionally')
 })
