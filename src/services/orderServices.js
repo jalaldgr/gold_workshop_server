@@ -12,7 +12,8 @@ module.exports={
     updateOrderById,
     getAllPendingOrdersByUserId,
     postCompleteOrder,
-    postSendFile
+    postSendFile,
+    getAllActiveOrders
 }
 
 
@@ -127,6 +128,16 @@ async function postSendFile(id,user,files) {
 
             order.save();
         }
+    }catch (e) {
+        return e
+    }
+
+}
+
+async function getAllActiveOrders() {
+    try{
+        return await Order.find({status:'در کارگاه'})
+
     }catch (e) {
         return e
     }

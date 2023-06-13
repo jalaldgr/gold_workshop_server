@@ -8,7 +8,8 @@ module.exports = {
     updateOrderById,
     getAllPendingOrdersById,
     postCompleteOrder,
-    postSendFile
+    postSendFile,
+    getAllActiveOrders
 }
 
 function create(req, res, next) {
@@ -110,6 +111,17 @@ function postSendFile(req,res,next){
         orderService.postSendFile(id,user,files)
             .then(orders=>{
                 res.send("فایل با موفقیت ارسال شد")
+            })
+    }catch (e) {
+        res.send(e)
+    }
+
+}
+function getAllActiveOrders(req,res,next){
+    try{
+        orderService.getAllActiveOrders()
+            .then(orders=>{
+                res.send(orders)
             })
     }catch (e) {
         res.send(e)
