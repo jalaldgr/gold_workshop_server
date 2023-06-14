@@ -109,7 +109,7 @@ async function postCompleteOrder(id) {
         if (!order) throw 'Trip not found';
 
         // copy userParam properties to user
-        Object.assign(order, {status:"تکمیل کارگاه 1"});
+        Object.assign(order, {status:"تکمیل کارگاه"});
 
         await order.save()
     }catch (e) {
