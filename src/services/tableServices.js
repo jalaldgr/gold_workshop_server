@@ -24,7 +24,18 @@ async function getTable() {
             return table.save()
 
         } else {
-            return table
+            const table6 = JSON.parse(table["table6"])
+
+            if(table6["burnish_deficiency"]>0)table6["burnish_deficiency"]=table6["burnish_deficiency"]*-1
+            if(table6["melt_deficiency"]>0)table6["melt_deficiency"]=table6["melt_deficiency"]*-1
+            if(table6["cut_deficiency"]>0)table6["cut_deficiency"]=table6["cut_deficiency"]*-1
+            table6["sum"] =table6["burnish_deficiency"]+table6["melt_deficiency"]+table6["cut_deficiency"]+table6["cut_deference"]
+
+
+            table["table6"]=JSON.stringify(table6)
+
+
+            return table.save()
         }
 
     } else {
@@ -48,18 +59,9 @@ async function postTable(params) {
             table = new Table({status: "در حال انجام",date:new Intl.DateTimeFormat('fa-IR-u-nu-latn', {dateStyle: 'full'}).format(d)})
             return table.save()
         } else {
-            const table6 = JSON.parse(table["table6"])
 
-            if(table6["burnish_deficiency"]>0)table6["burnish_deficiency"]=table6["burnish_deficiency"]*-1
-            if(table6["melt_deficiency"]>0)table6["melt_deficiency"]=table6["melt_deficiency"]*-1
-            if(table6["cut_deficiency"]>0)table6["cut_deficiency"]=table6["cut_deficiency"]*-1
-            table6["sum"] =table6["burnish_deficiency"]+table6["melt_deficiency"]+table6["cut_deficiency"]+table6["cut_deference"]
-            console.log(table6);
             Object.assign(table, cleanParams)
 
-            table["table6"]=JSON.stringify(table6)
-
-            console.log(table["table6"])
             await table.save()
             return await table
         }
@@ -127,3 +129,11 @@ async function postTableById(params,id) {
 }
 
 
+function clean(obj) {
+    for (var propName in obj) {
+        if (obj[propName] === null || obj[propName] === undefined ||obj[propName]==="") {
+            delete obj[propName];
+        }
+    }
+    return obj
+}
