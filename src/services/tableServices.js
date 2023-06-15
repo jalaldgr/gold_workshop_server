@@ -4,7 +4,9 @@ const moment = require('moment-jalaali')
 module.exports={
     getTable,
     postTable,
-    getAllTables
+    getAllTables,
+    postTableById,
+    getTableById
 
 }
 
@@ -87,3 +89,41 @@ async function getAllTables() {
     }
 
 }
+
+
+
+
+async function getTableById(id) {
+
+    try{
+        return await Table.findOne({_id:id})
+    }catch (e) {
+        return e
+    }
+
+}
+
+async function postTableById(params,id) {
+
+    try{
+        const table = await Table.findById(id)
+        const cleanParams = clean(params)
+        Object.assign(table, cleanParams)
+        return table.save()
+    }catch (e) {
+        return e
+    }
+
+
+    function clean(obj) {
+        for (var propName in obj) {
+            if (obj[propName] === null || obj[propName] === undefined ||obj[propName]==="") {
+                delete obj[propName];
+            }
+        }
+        return obj
+    }
+
+}
+
+

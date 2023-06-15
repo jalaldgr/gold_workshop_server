@@ -3,7 +3,9 @@ const designerService = require("../services/designerServices");
 
 module.exports = {getTable,
 postTable,
-    getTables
+    getTables,
+    getTableById,
+    postTableById
 }
 
 function getTable(req, res, next) {
@@ -31,4 +33,20 @@ function getTables(req,res,next){
         res.send(e)
     }
 
+}
+
+function postTableById(req, res, next) {
+    const id = req.params.id
+    tableService.postTableById(req.body,id)
+        .then(table => res.json(table))
+        .catch(err => next(err));
+
+}
+
+
+function getTableById(req,res,next){
+    const id = req.params.id
+    tableService.getTableById(id)
+        .then(table => res.json(table))
+        .catch(err => next(err));
 }
