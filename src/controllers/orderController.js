@@ -89,9 +89,10 @@ function getAllPendingOrdersById(req,res,next){
 
 function postCompleteOrder(req,res,next){
     const id = req.params.id
+    const status = req.params.status
 
     try{
-        orderService.postCompleteOrder(id)
+        orderService.postCompleteOrder(id,status)
             .then(orders=>{
                 res.send("سفارش با موفقیت تکمیل شد")
             })

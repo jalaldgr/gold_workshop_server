@@ -102,14 +102,14 @@ async function getAllPendingOrdersByUserId(id,status) {
 
 }
 
-async function postCompleteOrder(id) {
+async function postCompleteOrder(id,status) {
     try{
         const order = await Order.findById(id);
         // validate
         if (!order) throw 'Trip not found';
 
         // copy userParam properties to user
-        Object.assign(order, {status:"تکمیل طراحی"});
+        Object.assign(order, {status:status});
 
         await order.save()
     }catch (e) {

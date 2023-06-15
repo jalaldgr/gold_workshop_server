@@ -30,7 +30,7 @@ router.post('/login', workshop1Controller.postLogin)
 router.get("/get-workshop1/:id",workshop1Controller.getWorkshop1ById)
 router.post("/update-workshop1/:id",workshop1Controller.updateWorkshop1ById)
 router.get("/get-all-pending-orders/:id/:status/",orderController.getAllPendingOrdersById)
-router.post("/complete-order/:id/",orderController.postCompleteOrder)
+router.post("/complete-order/:id/:status",orderController.postCompleteOrder)
 router.post("/send-file/:id/:user/",upload.fields([{name:'workshop1File'}]),orderController.postSendFile)
 router.get("/get-all-order",orderController.getAllOrders)
 
