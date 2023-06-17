@@ -23,7 +23,7 @@ const schema = new Schema({
     customerDelivery:{type:String},
     paperDelivery:{type:String},
     feeOrder:{type:String},
-    orderMeta:{metaKey:{type:String},metaValue:String},
+    orderMeta:{type:String},
     woocommerceOrderId:{type:String},
     clientType:{type:String,default:'مشتری'},
     clientMobile:{type:String},
