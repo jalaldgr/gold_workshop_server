@@ -64,6 +64,10 @@ router.get("/get-tables/",tableController.getTables)
 router.post("/post-table/:id",tableController.postTableById)
 router.get("/get-table/:id",tableController.getTableById)
 
+
+router.get("/search/:s",orderController.getSearchInAllOrders)
+
+
 router.get('/', (req, res) => {
     res.send('admin works functionally')
 })

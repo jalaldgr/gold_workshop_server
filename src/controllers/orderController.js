@@ -9,7 +9,8 @@ module.exports = {
     getAllPendingOrdersById,
     postCompleteOrder,
     postSendFile,
-    getAllActiveOrders
+    getAllActiveOrders,
+    getSearchInAllOrders
 }
 
 function create(req, res, next) {
@@ -130,3 +131,17 @@ function getAllActiveOrders(req,res,next){
 
 }
 
+
+function getSearchInAllOrders(req,res,next){
+    const s = req.params.s
+
+    try{
+        orderService.getSearchInAllOrders(s)
+            .then(designers=>{
+                res.send(designers)
+            })
+    }catch (e) {
+        res.send(e)
+    }
+
+}

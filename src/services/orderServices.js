@@ -13,7 +13,8 @@ module.exports={
     getAllPendingOrdersByUserId,
     postCompleteOrder,
     postSendFile,
-    getAllActiveOrders
+    getAllActiveOrders,
+    getSearchInAllOrders
 }
 
 
@@ -144,3 +145,11 @@ async function getAllActiveOrders() {
 
 }
 
+async function getSearchInAllOrders(s) {
+    try{
+        return await Order.find( { $text: { $search: s } } )
+    }catch (e) {
+        return e
+    }
+
+}

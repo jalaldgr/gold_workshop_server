@@ -29,11 +29,8 @@ const schema = new Schema({
     clientMobile:{type:String},
     productType:{type:String,default:'دستبند'},
     deliveryDate:{type:String},
-
-
-
-
 });
+schema.index({ clientFullName: 'text', productType: 'text', clientMobile: 'text', orderMeta: 'text'});
 
 schema.set('toJSON', {
     virtuals: true,
