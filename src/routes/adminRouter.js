@@ -61,8 +61,8 @@ router.delete("/delete-order/:id",orderController.deleteOrderById)
 router.get("/get-table/",tableController.getTable)
 router.post("/post-table/",tableController.postTable)
 router.get("/get-tables/",tableController.getTables)
-router.post("/post-table/:id",tableController.postTableById)
-router.get("/get-table/:id",tableController.getTableById)
+router.post("/post-table-by-id/:id",tableController.postTableById)
+router.get("/get-table-by-id/:id",tableController.getTableById)
 
 
 router.get("/search/:s",orderController.getSearchInAllOrders)
