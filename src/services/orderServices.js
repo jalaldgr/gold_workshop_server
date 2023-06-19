@@ -44,7 +44,7 @@ async function create(userParam,userFiles) {
 
 async function getAllOrders() {
     try{
-        return await Order.find()
+        return await Order.find().sort({"createdDate":-1})
     }catch (e) {
         return e
     }
@@ -52,7 +52,7 @@ async function getAllOrders() {
 }
 async function getOrderById(id) {
     try{
-        return await Order.findOne({_id:id})
+        return await Order.findOne({_id:id}).sort({"createdDate":-1})
     }catch (e) {
         return e
     }
@@ -95,7 +95,7 @@ async function updateOrderById(id,userParam,userFiles) {
 
 async function getAllPendingOrdersByUserId(id,status) {
     try{
-        return await Order.find({$or:[{workshop1Id: id},{workshop2Id:id},{designerId:id}],$and:[{ status:status } ] })
+        return await Order.find({$or:[{workshop1Id: id},{workshop2Id:id},{designerId:id}],$and:[{ status:status } ] }).sort({"createdDate":-1})
 
     }catch (e) {
         return e
@@ -137,7 +137,7 @@ async function postSendFile(id,user,files) {
 
 async function getAllActiveOrders() {
     try{
-        return await Order.find({status:'در کارگاه'})
+        return await Order.find({status:'در کارگاه'}).sort({"createdDate":-1})
 
     }catch (e) {
         return e
@@ -147,7 +147,7 @@ async function getAllActiveOrders() {
 
 async function getSearchInAllOrders(s) {
     try{
-        return await Order.find( { $text: { $search: s } } )
+        return await Order.find( { $text: { $search: s } } ).sort({"createdDate":-1})
     }catch (e) {
         return e
     }
