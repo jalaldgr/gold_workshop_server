@@ -6,6 +6,7 @@ const schema = new Schema({
     hash: { type: String, required: true },
     fullName: { type: String, required: true },
     createdDate: { type: Date, default: Date.now },
+    isAdmin: {type:String,default: "no"},
     role:{type:String,required:true,default:"Designer"}
 });
 
