@@ -85,7 +85,7 @@ async function postTable(params) {
 
 async function getAllTables() {
     try{
-        return await Table.find()
+        return await Table.find().sort({"createdAt":-1})
     }catch (e) {
         return e
     }
