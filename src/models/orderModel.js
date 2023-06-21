@@ -29,7 +29,9 @@ const schema = new Schema({
     clientMobile:{type:String},
     productType:{type:String,default:'دستبند'},
     deliveryDate:{type:String},
-    orderDate:{type:String}
+    orderDate:{type:String},
+    orderType:{type:String,default:'تلفنی'},
+    orderRecipient:{type:String}
 });
 schema.index({ clientFullName: 'text', productType: 'text', clientMobile: 'text', orderMeta: 'text',orderDate: 'text'});
 
