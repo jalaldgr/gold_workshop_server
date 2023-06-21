@@ -6,7 +6,8 @@ module.exports={
     postTable,
     getAllTables,
     postTableById,
-    getTableById
+    getTableById,
+    getSearchInAllTables
 
 }
 
@@ -136,4 +137,13 @@ function clean(obj) {
         }
     }
     return obj
+}
+
+async function getSearchInAllTables(s) {
+    try{
+        return await Table.find( { $text: { $search: s } } ).sort({"createdDate":-1})
+    }catch (e) {
+        return e
+    }
+
 }

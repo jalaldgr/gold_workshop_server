@@ -1,11 +1,13 @@
 const tableService = require('../services/tableServices');
 const designerService = require("../services/designerServices");
+const orderService = require("../services/orderServices");
 
 module.exports = {getTable,
 postTable,
     getTables,
     getTableById,
-    postTableById
+    postTableById,
+    getSearchInAllTables
 }
 
 function getTable(req, res, next) {
@@ -49,4 +51,19 @@ function getTableById(req,res,next){
     tableService.getTableById(id)
         .then(table => res.json(table))
         .catch(err => next(err));
+}
+
+
+function getSearchInAllTables(req,res,next){
+    const s = req.params.s
+
+    try{
+        tableService.getSearchInAllTables(s)
+            .then(tables=>{
+                res.send(tables)
+            })
+    }catch (e) {
+        res.send(e)
+    }
+
 }

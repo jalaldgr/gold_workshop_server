@@ -12,6 +12,7 @@ const schema = new Schema({
     status:{type:String},
     date:{type: String ,}
 },{ timestamps: true });
+schema.index({ date: 'text'});
 
 schema.set('toJSON', {
     virtuals: true,
