@@ -67,6 +67,7 @@ router.get("/get-table-by-id/:id",tableController.getTableById)
 
 router.get("/search/:s",orderController.getSearchInAllOrders)
 router.get("/search-table/:s",tableController.getSearchInAllTables)
+router.get("/get-not-completed-orders/",orderController.getNotCompletedOrders)
 
 
 

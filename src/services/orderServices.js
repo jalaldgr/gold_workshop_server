@@ -14,7 +14,8 @@ module.exports={
     postCompleteOrder,
     postSendFile,
     getAllActiveOrders,
-    getSearchInAllOrders
+    getSearchInAllOrders,
+    getNotCompletedOrders
 }
 
 
@@ -148,6 +149,16 @@ async function getAllActiveOrders() {
 async function getSearchInAllOrders(s) {
     try{
         return await Order.find( { $text: { $search: s } } ).sort({"createdDate":-1})
+    }catch (e) {
+        return e
+    }
+
+}
+
+async function getNotCompletedOrders() {
+    try{
+        return await Order.find({ status:{$ne:"تکمیل نهایی"} }).sort({"createdDate":-1})
+
     }catch (e) {
         return e
     }
