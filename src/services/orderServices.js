@@ -138,7 +138,7 @@ async function postSendFile(id,user,files) {
 
 async function getAllActiveOrders() {
     try{
-        return await Order.find({status:'در کارگاه'}).sort({"createdDate":-1})
+        return await Order.find({status:'ارسال به کارگاه'}).sort({"createdDate":-1})
 
     }catch (e) {
         return e
