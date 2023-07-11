@@ -69,6 +69,7 @@ router.get("/search/:s",orderController.getSearchInAllOrders)
 router.get("/search-table/:s",tableController.getSearchInAllTables)
 router.get("/get-not-completed-orders/",orderController.getNotCompletedOrders)
 
+router.get("/get-yesterday-table/",tableController.getYesterdayTable)
 
 
 router.get('/', (req, res) => {

@@ -7,7 +7,8 @@ postTable,
     getTables,
     getTableById,
     postTableById,
-    getSearchInAllTables
+    getSearchInAllTables,
+    getYesterdayTable
 }
 
 function getTable(req, res, next) {
@@ -65,5 +66,12 @@ function getSearchInAllTables(req,res,next){
     }catch (e) {
         res.send(e)
     }
+
+}
+
+function getYesterdayTable(req, res, next) {
+    tableService.getYesterdayTable(req.body)
+        .then(table => res.json(table))
+        .catch(err => next(err));
 
 }

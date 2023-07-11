@@ -7,7 +7,8 @@ module.exports={
     getAllTables,
     postTableById,
     getTableById,
-    getSearchInAllTables
+    getSearchInAllTables,
+    getYesterdayTable
 
 }
 
@@ -147,3 +148,9 @@ async function getSearchInAllTables(s) {
     }
 
 }
+
+async function getYesterdayTable() {
+    let table = await Table.find().sort({_id: -1}).limit(2)
+    return table[1]
+}
+
