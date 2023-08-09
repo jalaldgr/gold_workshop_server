@@ -96,7 +96,7 @@ function postCompleteOrder(req,res,next){
     try{
         orderService.postCompleteOrder(id,status)
             .then(orders=>{
-                res.send("سفارش با موفقیت تکمیل شد")
+                res.send("عملیات با موفقیت انجام شد")
             })
     }catch (e) {
         res.send(e)
