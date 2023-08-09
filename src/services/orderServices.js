@@ -45,7 +45,7 @@ async function create(userParam,userFiles) {
 
 async function getAllOrders() {
     try{
-        return await Order.find().sort({"createdDate":-1})
+        return await Order.find().sort({"instantDelivery":-1,"createdDate":-1})
     }catch (e) {
         return e
     }
