@@ -5,7 +5,8 @@ module.exports = {postLogin,
     getAllDesigner,
     getDesignerById,
     deleteDesignerById,
-    updateDesignerById
+    updateDesignerById,
+    updateDesignerOrderCutDeficiency
 }
 
 function register(req, res, next) {
@@ -71,6 +72,21 @@ function updateDesignerById(req,res,next){
     if(id && body){
         try{
             designerService.updateDesignerById(id,body)
+                .then(result=>{res.send(result)})
+        }catch (e) {
+            res.send(e)
+        }
+    }
+
+}
+
+function updateDesignerOrderCutDeficiency(req,res,next){
+    const id = req.params.id
+    const value = req.params.value
+
+    if(id && value){
+        try{
+            designerService.updateDesignerOrderCutDeficiency(id,value)
                 .then(result=>{res.send(result)})
         }catch (e) {
             res.send(e)

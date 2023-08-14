@@ -1,6 +1,7 @@
 const jwt =  require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const db = require('../helper/db');
+const {Order} = require("../helper/db");
 const Designer = db.Designer
 const secretKey = process.env.JSON_WEBTOKEN_SECRET
 
@@ -9,7 +10,8 @@ module.exports={authenticate,
     getAllDesigner,
     getDesignerById,
     deleteDesignerById,
-    updateDesignerById
+    updateDesignerById,
+    updateDesignerOrderCutDeficiency
 }
 async function authenticate({ username, password }) {
     const designer = await Designer.findOne({ username });
@@ -72,6 +74,21 @@ async function updateDesignerById(id,params) {
             Object.assign(user, params)
             await user.save()
             return await user
+        }
+    }catch (e) {
+        return e
+    }
+
+}
+
+
+async function updateDesignerOrderCutDeficiency(id,value) {
+    try{
+        const order = await Order.findById(id)
+        if(order){
+            order.deficiency=value
+            await order.save()
+            return await order
         }
     }catch (e) {
         return e
